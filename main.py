@@ -5,17 +5,12 @@ import time
 # n = random.randint(0,9)
 # s =+ str(n)
 NB_MAX = 9
-NB_SECONDE = 3 
 longueur_sequence = 4 
 score = 0 
+sequence= ""
 
-def wait_and_clear() :
-    wait_seconde()
-    clear_screen() 
-
-
-def wait_seconde():
-    time.sleep(NB_SECONDE )
+def wait_seconde(nb_seconde):
+    time.sleep(nb_seconde )
 
 def clear_screen():
     if(os.name == 'posix'):
@@ -26,30 +21,35 @@ def clear_screen():
 def sequence_alearetoire(longueur_sequence ,sequence): 
     
     for i in range(longueur_sequence) :
-        nombre_int = random.randint(0,NB_MAX)
-        sequence += str(nombre_int)
+        chiffre = random.randint(0,NB_MAX)
+        sequence += str(chiffre)
     return sequence
 
 
-sequence = sequence_alearetoire(longueur_sequence , "")
+sequence = sequence_alearetoire(longueur_sequence , sequence)
 
 while True : 
     print("Retenez la séquence ")
+    wait_seconde(1)
     print(sequence)
-    wait_and_clear()
-    reponse = input("Votre réponse : ")
-    if reponse ==sequence : 
-        print("Bonne réponse")
-        score+=1
-        print(f"Votre score :  {score}")
-        sequences= sequence_alearetoire(1 , sequence)
-        sequence = sequences
-        clear_screen()
+    wait_seconde(3)
+    clear_screen()
 
+
+    sq_utilisateur  = input("Votre réponse : ")
+    
+    if sq_utilisateur ==sequence :  
+        score+=1
+        print("Bonne réponse")
+        print(f"Votre score :{score}")
+        sequence = sequence_alearetoire( 1 , sequence)
+        clear_screen()
+        
     else :
-        print(f"Mauvais réponse, la séquence était : {sequences}")
-        print(f"Votre score final  :  {score}")
-        break  
+        break 
+
+print(f"Mauvais réponse, la séquence était : {sequence}")
+print(f"Votre score final est : {score}") 
       
 
 
