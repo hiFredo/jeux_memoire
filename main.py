@@ -4,10 +4,9 @@ import time
 
 # n = random.randint(0,9)
 # s =+ str(n)
-
-nb_lettre = 4 
 NB_MAX = 9
 NB_SECONDE = 3 
+longueur_sequence = 4 
 score = 0 
 
 def wait_and_clear() :
@@ -24,32 +23,32 @@ def clear_screen():
     else:
         os.system('cls')
 
-def nombre_alearetoire(nb_lettre ,nombre): 
+def sequence_alearetoire(longueur_sequence ,sequence): 
     
-    for i in range(nb_lettre) :
+    for i in range(longueur_sequence) :
         nombre_int = random.randint(0,NB_MAX)
-        nombre += str(nombre_int)
-    return nombre
+        sequence += str(nombre_int)
+    return sequence
 
 
-nombre = nombre_alearetoire(nb_lettre , "")
+sequence = sequence_alearetoire(longueur_sequence , "")
 
 while True : 
     print("Retenez la séquence ")
-    print(nombre)
+    print(sequence)
     wait_and_clear()
     reponse = input("Votre réponse : ")
-    if reponse ==nombre : 
+    if reponse ==sequence : 
         print("Bonne réponse")
         score+=1
         print(f"Votre score :  {score}")
-        nombres= nombre_alearetoire(1 , nombre)
-        nombre = nombres
+        sequences= sequence_alearetoire(1 , sequence)
+        sequence = sequences
         clear_screen()
 
     else :
-        print(f"Mauvais réponse, la séquence était : {nombre}")
-        print(f"Votre score :  {score}")
+        print(f"Mauvais réponse, la séquence était : {sequences}")
+        print(f"Votre score final  :  {score}")
         break  
       
 
